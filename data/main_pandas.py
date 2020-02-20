@@ -23,8 +23,16 @@ def closest(data, v):
 
 
 def get_clean_df(path, keys=None):
+    """ Return cleaned pd.Dataframe from path
+
+    Whitespace stripped from headers
+    duplicates dropped if keys specified
+
+    :param path:
+    :param keys:
+    :return:
+    """
     df = pd.read_csv(path, skipinitialspace=True)
-    # df.columns = [x.strip() for x in df.columns]
     if keys is not None:
         df = df.drop_duplicates(keys)
     return df
@@ -64,6 +72,7 @@ def main(data_file, poi_list_file, output_file):
 
     del df['distance']
 
+    # Output
     df.to_csv(output_file)
 
 
